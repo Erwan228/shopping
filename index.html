@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #5571b5; 
+        }
+    </style>
+</head>
+<body>
+    <div id="screen"></div>
+</body>
+<script>
+    //Model
+    let shoppingContent = [];
+    let inContent = '';
+
+    //View
+    updateView()
+    function updateView(){
+        document.getElementById('screen').innerHTML = /*HTML*/ `
+        <p>Shopping cart:</p>
+        <div id="displayArea"></div>
+        <input type="text" onchange=updateValue(this.value) id="inputField">
+        <button onclick="addToCart()">Add to cart</button>
+        <div id="extra"><div>
+        `
+        for(let index = 0; index <= shoppingContent.length-1; index++){
+            document.getElementById('displayArea').innerHTML += /*HTML*/ `
+            <li>${shoppingContent[index]}</li>
+            `
+        }
+        if(shoppingContent.indexOf('lube') !== -1 || shoppingContent.indexOf('condom') !== -1){
+            document.getElementById('extra').innerHTML= "Have fun ;) Consent is sexy"
+        }
+        
+        
+    }
+    //Controller
+    function updateValue(inputValue){
+        inContent = inputValue
+    }
+
+    function addToCart(){
+        shoppingContent.push(inContent) 
+        updateView();
+        console.log(shoppingContent);
+        
+    }
+
+</script>
+</html>
